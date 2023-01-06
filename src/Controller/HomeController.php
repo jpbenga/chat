@@ -21,7 +21,10 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
             $json = $openAi->getManga($data['style']);
-            dd($json);
+
+            return $this->render('home/response.html.twig', [
+            'json' => $json ?? null,
+            ]);
         }
 
         return $this->render('home/index.html.twig', [

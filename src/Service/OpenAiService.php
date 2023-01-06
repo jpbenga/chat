@@ -7,9 +7,12 @@ use Orhanerday\OpenAi\OpenAi;
 
 class OpenAiService 
 {
+    private $parameterBag;
+
     public function __construct(
         ParameterBagInterface $parameterBag
     ){
+        $this->parameterBag = $parameterBag;
     }
 
     public function getManga(string $style): string
@@ -26,8 +29,16 @@ class OpenAiService
             'presence_penalty' => 0,
         ]);
 
-        dd($complete);
+        $json = json_decode($complete, true);
 
-        return 'history';
+        if (isset($json['choices'][0]['text'])){
+            $json = $json['choices'][0]['text'];
+
+            return $json;
+        }
+
+        $json = "Une erreur est survenue!";
+
+        return $json;
     }
 }

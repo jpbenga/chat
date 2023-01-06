@@ -21,6 +21,11 @@ class MangaType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
+                'attr' => [
+                    'hx-post' => '/',
+                    'hx-target' => '#response',
+
+                ]
             ])
         ;
     }
