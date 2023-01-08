@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+  <h1>Inspi Manga ⛩</h1>
   {{ form_start(form) }}
   {{ form_row(form.style) }}
-  {{ form_row(form.submit) }}
+  {{ form_row(form.submit, { label_html: true, label: 'Top manga ! <img class="htmx-indicator" src="/loader.svg">' }) }}
   {{ form_end(form) }}
 
   <div id="response"></div>
